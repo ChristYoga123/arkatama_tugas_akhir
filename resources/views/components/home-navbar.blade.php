@@ -8,22 +8,29 @@
                 </svg>
             </div>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a href="{{ route("home.index") }}">Home</a></li>
+                <li><a href="{{ route('home.index') }}">Home</a></li>
                 <li><a href="/#features">Features</a></li>
                 <li><a href="/#pricing">Pricing</a></li>
             </ul>
         </div>
-        <a class="btn btn-ghost text-xl hover:scale-110 duration-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">Arkatama.Link</a>
+        <a
+            class="btn btn-ghost text-xl hover:scale-110 duration-200 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">Arkatama.Link</a>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
-            <li><a href="{{ route("home.index") }}">Home</a></li>
+            <li><a href="{{ route('home.index') }}">Home</a></li>
             <li><a href="/#features">Features</a></li>
             <li><a href="/#pricing">Pricing</a></li>
         </ul>
     </div>
-    <div class="navbar-end gap-3">
-        <a class="btn btn-ghost">Login</a>
-        <a class="btn btn-warning border border-yellow-600">Button</a>
-    </div>
+    @auth
+        <div class="navbar-end gap-3">
+            <a href="{{ route('dashboard') }}" class="btn btn-warning border border-yellow-600">Dashboard</a>
+        </div>
+    @else
+        <div class="navbar-end gap-3">
+            <a href="{{ route('login') }}" class="btn btn-ghost">Login</a>
+            <a href="{{ route('register') }}" class="btn btn-warning border border-yellow-600">Register</a>
+        </div>
+    @endauth
 </div>

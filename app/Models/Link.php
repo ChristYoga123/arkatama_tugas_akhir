@@ -20,4 +20,9 @@ class Link extends Model
     {
         return $this->hasMany(Visit::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return "shortened_url";
+    }
 }

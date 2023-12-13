@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Package;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -35,5 +37,14 @@ class UserSeeder extends Seeder
             "password" => bcrypt("password"),
         ]);
         $user->assignRole("User Starter");
+
+        // get package id based on role
+        $package = Package::where("name", $user->roles->first()->name)->first();
+
+        Transaction::create([
+            "user_id" => $user->id,
+            "package_id" => $package->id,
+            "start_date" => now(),
+        ]);
     }
 }
